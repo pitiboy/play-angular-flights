@@ -1,4 +1,3 @@
-
 <div class="sidebar-wrapper">
     <div class="logo">
         <a class="simple-text">
@@ -10,26 +9,26 @@
     </div>
     <ul class="nav">
         <li>
-            <a>
+            <a class="nav-link" [routerLink]="['home']">
                 <i class="ti-home"></i>
                 <p>Home</p>
             </a>
         </li>
 
         <li>
-            <a>
+            <a class="nav-link" [routerLink]="['flight/search']">
                 <i class="ti-arrow-top-right"></i>
                 <p>Flights</p>
             </a>
         </li>
 
         <li>
-            <a>
+            <a class="nav-link" [routerLink]="['passenger-search']">
                 <i class="ti-user"></i>
                 <p>Passengers</p>
             </a>
         </li>
-            <!--
+        <!--
             <li routerLinkActive="active">
             <a>
                 <i class="ti-shopping-cart"></i>
@@ -43,6 +42,6 @@
             </a>
             </li>
         -->
-        
+
     </ul>
 </div>

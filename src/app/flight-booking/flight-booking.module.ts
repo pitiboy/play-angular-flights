@@ -4,23 +4,32 @@ import { FlightSearchComponent } from './flight-search/flight-search.component';
 import { FlightService } from './flight-search/flight-service.service';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule } from '@angular/forms';
+import { PassengerSearchComponent } from './passenger-search/passenger-search.component';
+import { FLIGHT_BOOKING_ROUTES } from './flight-booking.routes';
+import { RouterModule } from '@angular/router';
+import { FlightEditComponent } from './flight-edit/flight-edit.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    SharedModule
+    SharedModule,
+    RouterModule.forChild(FLIGHT_BOOKING_ROUTES),
   ],
   declarations: [
     FlightSearchComponent,
-  ],
+    PassengerSearchComponent,
+    FlightEditComponent,
+],
   providers: [
     FlightService
     // { provide: FlightService, useClass: FlightService } // TODO: mock
   ],
   exports: [
     FlightSearchComponent,
-    SharedModule,
+    PassengerSearchComponent,
+    // SharedModule,
+    FlightEditComponent,
   ]
 })
 export class FlightBookingModule { }

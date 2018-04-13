@@ -41,7 +41,8 @@
                 <td>{{flight.to | city:'name'}} ({{flight.to | city:'short'}})</td>
                 <td>{{flight.date | date:'dd.MM.yyyy HH:mm'}}</td>
                 <td>
-                    <a class="btn btn-link" (click)="select(flight)">Select</a>
+                    <a class="btn btn-link" (click)="select(flight)">Select</a> |
+                    <a class="btn btn-link" [routerLink]="['/flight/edit', flight.id, {showDetails: false}]">Edit</a>
                 </td>
             </tr>
         </tbody>
