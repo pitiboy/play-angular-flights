@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+        <style>
+/*--------------------------------------------------------------------------------------------- * Copyright (c) Microsoft Corporation. All rights reserved. * Licensed under the MIT License. See License.txt in the project root for license information. *--------------------------------------------------------------------------------------------*/ body { font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback"; font-size: 14px; padding: 0 12px; line-height: 22px; word-wrap: break-word; } body.scrollBeyondLastLine { margin-bottom: calc(100vh - 22px); } body.showEditorSelection .code-line { position: relative; } body.showEditorSelection .code-active-line:before, body.showEditorSelection .code-line:hover:before { content: ""; display: block; position: absolute; top: 0; left: -12px; height: 100%; } body.showEditorSelection li.code-active-line:before, body.showEditorSelection li.code-line:hover:before { left: -30px; } .vscode-light.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(0, 0, 0, 0.15); } .vscode-light.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(0, 0, 0, 0.40); } .vscode-dark.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(255, 255, 255, 0.4); } .vscode-dark.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(255, 255, 255, 0.60); } .vscode-high-contrast.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(255, 160, 0, 0.7); } .vscode-high-contrast.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(255, 160, 0, 1); } img { max-width: 100%; max-height: 100%; } a { color: #4080D0; text-decoration: none; } a:focus, input:focus, select:focus, textarea:focus { outline: 1px solid -webkit-focus-ring-color; outline-offset: -1px; } hr { border: 0; height: 2px; border-bottom: 2px solid; } h1 { padding-bottom: 0.3em; line-height: 1.2; border-bottom-width: 1px; border-bottom-style: solid; } h1, h2, h3 { font-weight: normal; } h1 code, h2 code, h3 code, h4 code, h5 code, h6 code { font-size: inherit; line-height: auto; } a:hover { color: #4080D0; text-decoration: underline; } table { border-collapse: collapse; } table > thead > tr > th { text-align: left; border-bottom: 1px solid; } table > thead > tr > th, table > thead > tr > td, table > tbody > tr > th, table > tbody > tr > td { padding: 5px 10px; } table > tbody > tr + tr > td { border-top: 1px solid; } blockquote { margin: 0 7px 0 5px; padding: 0 16px 0 10px; border-left: 5px solid; } code { font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback"; font-size: 14px; line-height: 19px; } body.wordWrap pre { white-space: pre-wrap; } .mac code { font-size: 12px; line-height: 18px; } code > div { padding: 16px; border-radius: 3px; overflow: auto; } /** Theming */ .vscode-light { color: rgb(30, 30, 30); } .vscode-dark { color: #DDD; } .vscode-high-contrast { color: white; } .vscode-light code { color: #A31515; } .vscode-dark code { color: #D7BA7D; } .vscode-light code > div { background-color: rgba(220, 220, 220, 0.4); } .vscode-dark code > div { background-color: rgba(10, 10, 10, 0.4); } .vscode-high-contrast code > div { background-color: rgb(0, 0, 0); } .vscode-high-contrast h1 { border-color: rgb(0, 0, 0); } .vscode-light table > thead > tr > th { border-color: rgba(0, 0, 0, 0.69); } .vscode-dark table > thead > tr > th { border-color: rgba(255, 255, 255, 0.69); } .vscode-light h1, .vscode-light hr, .vscode-light table > tbody > tr + tr > td { border-color: rgba(0, 0, 0, 0.18); } .vscode-dark h1, .vscode-dark hr, .vscode-dark table > tbody > tr + tr > td { border-color: rgba(255, 255, 255, 0.18); } .vscode-light blockquote, .vscode-dark blockquote { background: rgba(127, 127, 127, 0.1); border-color: rgba(0, 122, 204, 0.5); } .vscode-high-contrast blockquote { background: transparent; border-color: #fff; }
+</style>
+<style>
+/* Tomorrow Theme */ /* http://jmblog.github.com/color-themes-for-google-code-highlightjs */ /* Original theme - https://github.com/chriskempson/tomorrow-theme */ /* Tomorrow Comment */ .hljs-comment, .hljs-quote { color: #8e908c; } /* Tomorrow Red */ .hljs-variable, .hljs-template-variable, .hljs-tag, .hljs-name, .hljs-selector-id, .hljs-selector-class, .hljs-regexp, .hljs-deletion { color: #c82829; } /* Tomorrow Orange */ .hljs-number, .hljs-built_in, .hljs-builtin-name, .hljs-literal, .hljs-type, .hljs-params, .hljs-meta, .hljs-link { color: #f5871f; } /* Tomorrow Yellow */ .hljs-attribute { color: #eab700; } /* Tomorrow Green */ .hljs-string, .hljs-symbol, .hljs-bullet, .hljs-addition { color: #718c00; } /* Tomorrow Blue */ .hljs-title, .hljs-section { color: #4271ae; } /* Tomorrow Purple */ .hljs-keyword, .hljs-selector-tag { color: #8959a8; } .hljs { display: block; overflow-x: auto; color: #4d4d4c; padding: 0.5em; } .hljs-emphasis { font-style: italic; } .hljs-strong { font-weight: bold; }
+</style>
+<style>
+ul.contains-task-list { padding-left: 0; } ul ul.contains-task-list { padding-left: 40px; } .task-list-item { list-style-type: none; } .task-list-item-checkbox { vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'HelveticaNeue-Light', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 id="your-first-component">Your first Component</h1>
+<h2 id="component-to-search-for-flights">Component to search for flights</h2>
+<p>In this section we will implement the <code>FlightSearchComponent</code>. Follow the step by step descriptions or do it on your own.</p>
+<ol>
+<li>
+<p>Create a folder <code>entities</code> in your project's <code>app</code> folder.</p>
+</li>
+<li>
+<p>In this folder, create a file called <code>flight.ts</code>:</p>
+</li>
+</ol>
+<pre class="hljs"><code><div>    <span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> Flight {
+        id: <span class="hljs-built_in">number</span>;
+        from: <span class="hljs-built_in">string</span>;
+        to: <span class="hljs-built_in">string</span>;
+        date: <span class="hljs-built_in">string</span>;
+        delayed?: <span class="hljs-built_in">boolean</span>;
+    }
+</div></code></pre>
+<ol start="3">
+<li>Create a folder <code>flight-search</code> in <code>src/app</code> for the <code>FlightSearchComponent</code> with the following files:</li>
+</ol>
+<ul>
+<li><code>flight-search.component.ts</code></li>
+<li><code>flight-search.component.html</code></li>
+</ul>
+<ol start="4">
+<li>Open the file <code>flight-search.component.ts</code> and assign the selector <code>flight-search</code>:</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-comment">// flight-search/flight-search.component.ts</span>
+
+<span class="hljs-keyword">import</span> {Component} from <span class="hljs-string">'@angular/core'</span>;
+
+@Component({
+  selector: <span class="hljs-string">'flight-search'</span>,
+  templateUrl: <span class="hljs-string">'./flight-search.component.html'</span>
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> FlightSearchComponent {
+
+}
+</div></code></pre>
+<ol start="5">
+<li>Open the file <code>flight-search.component.html</code> and insert some html to test it:</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-comment">&lt;!-- flight-search/flight-search.component.html --&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Flight Search<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+</div></code></pre>
+<ol start="6">
+<li>Register the <code>FlightSearchComponent</code> in the <code>app.module.ts</code> file.</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-comment">// app.module.ts</span>
+
+[...]
+@NgModule({
+  declarations: [
+    [...]
+    FlightSearchComponent
+  ],
+  [...]
+</div></code></pre>
+<ol start="7">
+<li>
+<p>In <code>app.component.html</code> replace the data binding to <code>{{title}}</code> with <code>&lt;flight-search&gt;&lt;/flight-search&gt;</code></p>
+</li>
+<li>
+<p>Serve your project (<code>npm start</code>). You should see the new component displayed.</p>
+</li>
+</ol>
+<h2 id="implement-component-logic-and-connect-it-with-the-template">Implement Component logic and connect it with the template</h2>
+<ol>
+<li>Create following methods and properties for the <code>FlightSearchComponent</code>:</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-comment">// flight-search/flight-search.component.ts</span>
+
+    @Component({
+        selector: <span class="hljs-string">'flight-search'</span>,
+        templateUrl: <span class="hljs-string">'./flight-search.component.html'</span>
+    })
+    <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> FlightSearchComponent <span class="hljs-keyword">implements</span> OnInit {
+
+        from: <span class="hljs-built_in">string</span>;
+        to: <span class="hljs-built_in">string</span>;
+        flights: Flight[] = [];
+        selectedFlight: Flight;
+
+        <span class="hljs-keyword">constructor</span>(private http: HttpClient) {
+        }
+
+        ngOnInit() { }
+
+        search(): <span class="hljs-built_in">void</span> {
+            <span class="hljs-comment">// Implementation follows</span>
+        }
+
+        select(f: Flight): <span class="hljs-built_in">void</span> {
+            <span class="hljs-keyword">this</span>.selectedFlight = f;
+        }
+    }
+</div></code></pre>
+<ol start="6">
+<li>Implement the method <code>search</code>. It should use the properties <code>from</code> and <code>to</code>. Use the injected service <code>HttpClient</code> to search for flights and assign the result to the property <code>flights</code>.</li>
+</ol>
+<details>
+<summary>Show code</summary>
+<p>
+<pre class="hljs"><code><div><span class="hljs-comment">// flight-search/flight-search.component.ts</span>
+
+<span class="hljs-keyword">import</span> {[...], HttpHeaders, HttpParams} from <span class="hljs-string">'@angular/common/http'</span>;
+
+ [...]
+
+search(): <span class="hljs-built_in">void</span> {
+    <span class="hljs-keyword">const</span> url = <span class="hljs-string">'http://www.angular.at/api/flight'</span>;
+    <span class="hljs-keyword">const</span> params = <span class="hljs-keyword">new</span> HttpParams()
+                        .set(<span class="hljs-string">'from'</span>, <span class="hljs-keyword">this</span>.from || <span class="hljs-string">''</span>)
+                        .set(<span class="hljs-string">'to'</span>, <span class="hljs-keyword">this</span>.to || <span class="hljs-string">''</span>);
+
+    <span class="hljs-keyword">this</span>.http
+        .get&lt;Flight[]&gt;(url, {params})
+        .subscribe(
+        (flights: Flight[]) =&gt; {
+            <span class="hljs-keyword">this</span>.flights = flights;
+        },
+        (errResp) =&gt; {
+            <span class="hljs-built_in">console</span>.error(<span class="hljs-string">'Error loading flights'</span>, errResp);
+        });
+}
+</div></code></pre>
+</p>
+</details>
+<ol start="7">
+<li>Import the <code>HttpClient</code> into the <code>app.module.ts</code></li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-comment">// app.module.ts</span>
+
+<span class="hljs-keyword">import</span> {HttpClientModule} from <span class="hljs-string">'@angular/common/http'</span>;
+[...]
+
+@NgModule({
+  imports: [
+    [...]
+    HttpClientModule
+  ],
+  [...]
+</div></code></pre>
+<ol start="8">
+<li>Open <code>flight-search.component.html</code>, and add the html for the search form.
+Use the following html fragment for this.
+Note that you have to <strong>extend it with bindings</strong> later on:</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-comment">&lt;!-- flight-search/flight-search.component.html --&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"card"</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"header"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">h2</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"title"</span>&gt;</span>Flight Search<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"content"</span>&gt;</span>
+
+            <span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-group"</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>From:<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">input</span>
+                        <span class="hljs-attr">name</span>=<span class="hljs-string">"from"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-control"</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-group"</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>To:<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">input</span>
+                        <span class="hljs-attr">name</span>=<span class="hljs-string">"to"</span>
+                        <span class="hljs-attr">class</span>=<span class="hljs-string">"form-control"</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+                <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-group"</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">button</span>
+                       <span class="hljs-attr">class</span>=<span class="hljs-string">"btn btn-default"</span>&gt;</span>Search<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</div></code></pre>
+<ol start="9">
+<li>
+<p>Test if your project still compiles</p>
+</li>
+<li>
+<p>Implement template logic for the search button. Set the enabled property to false if <code>from</code> or <code>to</code> is not filled.
+Use <code>[(ngModel)]</code>, <code>[disabled]</code> and <code>(click)</code> bindings.</p>
+</li>
+</ol>
+<details>
+<summary>Show code</summary>
+<p>
+<pre class="hljs"><code><div><span class="hljs-comment">&lt;!-- flight-search/flight-search.component.html --&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"card"</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"header"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">h2</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"title"</span>&gt;</span>Flight Search<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"content"</span>&gt;</span>
+
+            <span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-group"</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>From:<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"from"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"from"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-control"</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-group"</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>To:<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"to"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"to"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-control"</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+                <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-group"</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">button</span>
+                    [<span class="hljs-attr">disabled</span>]=<span class="hljs-string">"!to || !from"</span>
+                    (<span class="hljs-attr">click</span>)=<span class="hljs-string">"search()"</span>
+                    <span class="hljs-attr">class</span>=<span class="hljs-string">"btn btn-default"</span>&gt;</span>Search<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</div></code></pre>
+</p>
+</details>
+<ol start="11">
+<li>
+<p>Test whether the button is disabled and from and to input is empty.</p>
+</li>
+<li>
+<p>Add another section to the templates which will display the searched flights in a table.
+Use following html for this.
+Note that you have to <strong>extend it with bindings</strong> later on:</p>
+</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-comment">&lt;!-- flight-search/flight-search.component.html --&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"card"</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"table table-contensed"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">thead</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>Id<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>From<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>To<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>Date<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">thead</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"btn btn-link"</span>&gt;</span>Select<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</div></code></pre>
+<ol start="10">
+<li>Implement template logic to:</li>
+</ol>
+<ul>
+<li>hide and show the table based on a search result</li>
+<li>list the flights search result</li>
+<li>mark the selected flight with an <code>active</code> class</li>
+</ul>
+<p>Use <code>*ngIf</code>, <code>*ngFor</code> directives and <code>(click)</code> bindings.</p>
+<details>
+<summary>Show code</summary>
+<p>
+<pre class="hljs"><code><div><span class="hljs-comment">&lt;!-- flight-search/flight-search.component.html --&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"card"</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"table table-contensed"</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"flights.length &gt; 0"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">thead</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>Id<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>From<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>To<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>Date<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">thead</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">tr</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let f of flights"</span>
+                [<span class="hljs-attr">class.active</span>]=<span class="hljs-string">"f === selectedFlight"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>{{f.id}}<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>{{f.from }}<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>{{f.to }}<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>{{f.date | date:'dd.MM.yyyy HH:mm'}}<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"btn btn-link"</span> (<span class="hljs-attr">click</span>)=<span class="hljs-string">"select(f)"</span>&gt;</span>Select<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</div></code></pre>
+</p>
+</details>
+<ol start="9">
+<li>
+<p>Test if the found flights are displayed and if the selected flight is marked with the <code>active</code> class.</p>
+</li>
+<li>
+<p>Add a third section to the template. This should display the selected flight.
+Display this section only if a flight is selected.</p>
+</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-comment">&lt;!-- flight-search/flight-search.component.html --&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"card"</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"selectedFlight"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"content"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">pre</span>&gt;</span>{{ selectedFlight | json }}<span class="hljs-tag">&lt;/<span class="hljs-name">pre</span>&gt;</span> <span class="hljs-comment">&lt;!-- neue Zeile --&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</div></code></pre>
+<ol start="11">
+<li>Check your solution with the Typescript Compiler in your IDE as explained in the section for IDE setup. If there are compiler errors fix them.</li>
+</ol>
+<ul>
+<li><strong>Visual Studio Code</strong>: <code>CTRL+SHIFT+B</code> (In case of an error you will see a symbol at the left bottom).</li>
+<li><strong>WebStorm/ IntelliJ</strong>: Icons in the tab typescript, that can be activated at the bottom left, if a file is selected.</li>
+</ul>
+<ol start="12">
+<li>Make sure your project also compiles by running <code>npm start</code> or <code>ng serve</code>.</li>
+</ol>
+
+    </body>
+    </html>

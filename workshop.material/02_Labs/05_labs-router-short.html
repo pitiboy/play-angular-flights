@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+        <style>
+/*--------------------------------------------------------------------------------------------- * Copyright (c) Microsoft Corporation. All rights reserved. * Licensed under the MIT License. See License.txt in the project root for license information. *--------------------------------------------------------------------------------------------*/ body { font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback"; font-size: 14px; padding: 0 12px; line-height: 22px; word-wrap: break-word; } body.scrollBeyondLastLine { margin-bottom: calc(100vh - 22px); } body.showEditorSelection .code-line { position: relative; } body.showEditorSelection .code-active-line:before, body.showEditorSelection .code-line:hover:before { content: ""; display: block; position: absolute; top: 0; left: -12px; height: 100%; } body.showEditorSelection li.code-active-line:before, body.showEditorSelection li.code-line:hover:before { left: -30px; } .vscode-light.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(0, 0, 0, 0.15); } .vscode-light.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(0, 0, 0, 0.40); } .vscode-dark.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(255, 255, 255, 0.4); } .vscode-dark.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(255, 255, 255, 0.60); } .vscode-high-contrast.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(255, 160, 0, 0.7); } .vscode-high-contrast.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(255, 160, 0, 1); } img { max-width: 100%; max-height: 100%; } a { color: #4080D0; text-decoration: none; } a:focus, input:focus, select:focus, textarea:focus { outline: 1px solid -webkit-focus-ring-color; outline-offset: -1px; } hr { border: 0; height: 2px; border-bottom: 2px solid; } h1 { padding-bottom: 0.3em; line-height: 1.2; border-bottom-width: 1px; border-bottom-style: solid; } h1, h2, h3 { font-weight: normal; } h1 code, h2 code, h3 code, h4 code, h5 code, h6 code { font-size: inherit; line-height: auto; } a:hover { color: #4080D0; text-decoration: underline; } table { border-collapse: collapse; } table > thead > tr > th { text-align: left; border-bottom: 1px solid; } table > thead > tr > th, table > thead > tr > td, table > tbody > tr > th, table > tbody > tr > td { padding: 5px 10px; } table > tbody > tr + tr > td { border-top: 1px solid; } blockquote { margin: 0 7px 0 5px; padding: 0 16px 0 10px; border-left: 5px solid; } code { font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback"; font-size: 14px; line-height: 19px; } body.wordWrap pre { white-space: pre-wrap; } .mac code { font-size: 12px; line-height: 18px; } code > div { padding: 16px; border-radius: 3px; overflow: auto; } /** Theming */ .vscode-light { color: rgb(30, 30, 30); } .vscode-dark { color: #DDD; } .vscode-high-contrast { color: white; } .vscode-light code { color: #A31515; } .vscode-dark code { color: #D7BA7D; } .vscode-light code > div { background-color: rgba(220, 220, 220, 0.4); } .vscode-dark code > div { background-color: rgba(10, 10, 10, 0.4); } .vscode-high-contrast code > div { background-color: rgb(0, 0, 0); } .vscode-high-contrast h1 { border-color: rgb(0, 0, 0); } .vscode-light table > thead > tr > th { border-color: rgba(0, 0, 0, 0.69); } .vscode-dark table > thead > tr > th { border-color: rgba(255, 255, 255, 0.69); } .vscode-light h1, .vscode-light hr, .vscode-light table > tbody > tr + tr > td { border-color: rgba(0, 0, 0, 0.18); } .vscode-dark h1, .vscode-dark hr, .vscode-dark table > tbody > tr + tr > td { border-color: rgba(255, 255, 255, 0.18); } .vscode-light blockquote, .vscode-dark blockquote { background: rgba(127, 127, 127, 0.1); border-color: rgba(0, 122, 204, 0.5); } .vscode-high-contrast blockquote { background: transparent; border-color: #fff; }
+</style>
+<style>
+/* Tomorrow Theme */ /* http://jmblog.github.com/color-themes-for-google-code-highlightjs */ /* Original theme - https://github.com/chriskempson/tomorrow-theme */ /* Tomorrow Comment */ .hljs-comment, .hljs-quote { color: #8e908c; } /* Tomorrow Red */ .hljs-variable, .hljs-template-variable, .hljs-tag, .hljs-name, .hljs-selector-id, .hljs-selector-class, .hljs-regexp, .hljs-deletion { color: #c82829; } /* Tomorrow Orange */ .hljs-number, .hljs-built_in, .hljs-builtin-name, .hljs-literal, .hljs-type, .hljs-params, .hljs-meta, .hljs-link { color: #f5871f; } /* Tomorrow Yellow */ .hljs-attribute { color: #eab700; } /* Tomorrow Green */ .hljs-string, .hljs-symbol, .hljs-bullet, .hljs-addition { color: #718c00; } /* Tomorrow Blue */ .hljs-title, .hljs-section { color: #4271ae; } /* Tomorrow Purple */ .hljs-keyword, .hljs-selector-tag { color: #8959a8; } .hljs { display: block; overflow-x: auto; color: #4d4d4c; padding: 0.5em; } .hljs-emphasis { font-style: italic; } .hljs-strong { font-weight: bold; }
+</style>
+<style>
+ul.contains-task-list { padding-left: 0; } ul ul.contains-task-list { padding-left: 40px; } .task-list-item { list-style-type: none; } .task-list-item-checkbox { vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'HelveticaNeue-Light', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 id="angular-routing">Angular Routing</h1>
+<h2 id="implement-routing">Implement routing</h2>
+<p>In this section we will implement the following menu structure with routing:</p>
+<pre><code>   AppComponent
+      +----------- HomeComponent
+      +----------- FlightSearchComponent
+      +----------- PassengerSearchComponent (Dummy)
+</code></pre>
+<p>Respect the following aspects:</p>
+<ul>
+<li>The <code>AppComponent</code> and <code>HomeComponent</code> is part of <code>AppModules</code></li>
+<li>The two other components are part of <code>FlightBookingModules</code></li>
+<li>Each module gets its own router config with <code>forRoot</code> or <code>forChild</code> assigned.</li>
+</ul>
+<p>Follow the steps below to implement this:</p>
+<ol>
+<li>
+<p>Add the following additional (dummy-)component, which should be displayed as a separate route:</p>
+<ul>
+<li>HomeComponent in <code>src/app/home</code></li>
+<li>PassengerSearchComponent in <code>src/app/flight-booking/passenger-search</code></li>
+</ul>
+</li>
+<li>
+<p>Make sure that the <code>HomeComponent</code> is registered in <code>AppModule</code>.</p>
+</li>
+<li>
+<p>Also make sure that the <code>PassengerSearchComponent</code> is registered in <code>FlightBookingModule</code>.</p>
+</li>
+<li>
+<p>Create a router config in <code>app.routes.ts</code> which is used in the older <code>src/app</code> in the file <code>AppModule</code>.</p>
+<details>
+<summary>Show code</summary>
+<p>
+<pre class="hljs"><code><div><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> APP_ROUTES: Routes = [
+  {
+    path: <span class="hljs-string">''</span>,
+    redirectTo: <span class="hljs-string">'home'</span>,
+    pathMatch: <span class="hljs-string">'full'</span>
+  },
+  {
+    path: <span class="hljs-string">'home'</span>,
+    component: HomeComponent
+  },
+  {
+    path: <span class="hljs-string">'**'</span>,
+    redirectTo: <span class="hljs-string">'home'</span>
+  }
+];
+</div></code></pre>
+</li>
+</ol>
+  </p>
+  </details>
+<ol start="5">
+<li>
+<p>Open <code>app.module.ts</code> and import <code>RouterModule</code> from <code>@angular/router</code>.
+Use the router config from the file <code>app.routes.ts</code>.</p>
+<details>
+<summary>Show code</summary>
+<p>
+<pre class="hljs"><code><div>@NgModule({
+  imports: [
+    […]
+    RouterModule.forRoot(APP_ROUTES) <span class="hljs-comment">// &lt;-- Add this line!</span>
+  ],
+  […]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AppModule { }
+
+</div></code></pre>
+</p>
+</details>
+<p>Notice that the method <code>forRoot</code> is used. This is done because <code>AppModule</code> is our main/root module.</p>
+</li>
+<li>
+<p>Create a file <code>flight-booking.routes.ts</code> in the folder <code>src/app/flight-booking</code> with a routing configuration for <code>FlightSearchComponent</code> and <code>PassengerSearchComponent</code>.</p>
+<details>
+<summary>Show code</summary>
+<p>
+<pre class="hljs"><code><div><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> FLIGHT_BOOKING_ROUTES: Routes = [
+  {
+    path: <span class="hljs-string">'flight-search'</span>,
+    component: FlightSearchComponent
+  },
+  {
+    path: <span class="hljs-string">'passenger-search'</span>,
+    component: PassengerSearchComponent
+  }
+];
+</div></code></pre>
+</p>
+</details>
+</li>
+<li>
+<p>Open the file <code>flight-booking.module.ts</code> in the folder <code>src/app/flight-booking</code> and import the <code>RouterModule</code>.
+Use the newly created router config. Notice that we now have to use <strong>forChild</strong> to register the router config for a Child-Module (Feature-Module).</p>
+ <details>
+ <summary>Show code</summary>
+ <p>
+<pre class="hljs"><code><div>@NgModule({
+  imports: [
+    [...]
+    RouterModule.forChild(FLIGHT_BOOKING_ROUTES) <span class="hljs-comment">// &lt;-- Add this line!</span>
+  ],
+  [...]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> FlightBookingModule { }
+</div></code></pre>
+</li>
+</ol>
+  </p>
+  </details>
+<ol start="8">
+<li>
+<p>Open the file <code>app.component.html</code> and replace the element/component <code>flight-search</code> with <code>&lt;router-outlet&gt;&lt;/router-outlet&gt;</code>. This is the placeholder to render the route components in.</p>
+ <details>
+ <summary>Show code</summary>
+ <p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"content"</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- &lt;flight-search&gt;&lt;/flight-search&gt; --&gt;</span> <span class="hljs-comment">&lt;!-- old --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">router-outlet</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">router-outlet</span>&gt;</span> <span class="hljs-comment">&lt;!-- new --&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</div></code></pre>
+ </p>
+ </details>
+</li>
+<li>
+<p>Open the file <code>sidebar.component.html</code> and extend the menu items with the directive <code>routerLink</code>. This directive activates the related routes on click.</p>
+ <details>
+ <summary>Show code</summary>
+ <p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"nav-item"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"nav-link"</span> <span class="hljs-attr">routerLink</span>=<span class="hljs-string">"passenger-search"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">em</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"fa fa-users"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">em</span>&gt;</span>
+        Passenger
+    <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"nav-item"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"nav-link"</span> <span class="hljs-attr">routerLink</span>=<span class="hljs-string">"flight-search"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">em</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"fa fa-plane"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">em</span>&gt;</span>
+        Flights
+    <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"nav-item"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"nav-link"</span> <span class="hljs-attr">routerLink</span>=<span class="hljs-string">"home"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">em</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"fa fa-ticket"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">em</span>&gt;</span>
+        Home
+    <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+</div></code></pre>
+ </p>
+ </details>
+</li>
+<li>
+<p>Test the solution.</p>
+</li>
+</ol>
+<h2 id="bonus--routing-with-the-hash-fragment-and-tracing">Bonus: Routing with the Hash-Fragment and Tracing *</h2>
+<p>To change how the router works there is a second argument in the <code>forRoot</code> method.
+In this object you can define to use Hash-Fragment in the url instead of the history api (i. e. <a href="http://localhost:4200/#/route">http://localhost:4200/#/route</a> instead of <a href="http://localhost:4200/route">http://localhost:4200/route</a>). There is also an option to display tracing messaged in the console:</p>
+<pre class="hljs"><code><div>RouterModule.forRoot(APP_ROUTES, { useHash: <span class="hljs-literal">true</span>, enableTracing: <span class="hljs-literal">true</span>});
+</div></code></pre>
+<p>Activate the options and make sure that the <code>#</code> is placed in the url and the logs are in the console.</p>
+<h2 id="parameters">Parameters</h2>
+<p>In this exercise we will (if not done in another exercise) create a <code>FlightEditComponent</code> component in <code>FlightBookingModule</code>:</p>
+<pre><code>   AppComponent
+      +----------- HomeComponent
+      +----------- FlightSearchComponent ---- id ----+
+      +----------- PassengerSearchComponent          |
+      +----------- FlightEditComponent [NEU!] <------+
+</code></pre>
+<p>This should take a parameter <code>id</code> and an optional parameter <code>showDetails</code> and for now <strong>just display</strong> them.
+The component should be displayed when clicking on an edit button in the <code>FlightCardComponents</code>.</p>
+<ol>
+<li>
+<p>Create the <code>FlightEditComponent</code> in <code>src/app/flight-booking/flight-edit</code> and register it.</p>
+</li>
+<li>
+<p>Inject <code>ActivatedRoute</code> in the constructor of <code>FlightEditComponent</code> and read the <code>id</code> and <code>showDetails</code>.</p>
+<details>
+<summary>Show code</summary>
+<p>
+<pre class="hljs"><code><div>@Component({
+  selector: <span class="hljs-string">'app-flight-edit'</span>,
+  templateUrl: <span class="hljs-string">'./flight-edit.component.html'</span>
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> FlightEditComponent <span class="hljs-keyword">implements</span> OnInit {
+  id: <span class="hljs-built_in">string</span>;
+  showDetails: <span class="hljs-built_in">string</span>;
+
+  <span class="hljs-keyword">constructor</span>([...], private route: ActivatedRoute) { }
+
+  ngOnInit() {
+    <span class="hljs-keyword">this</span>.route.params.subscribe(
+      params =&gt; {
+        <span class="hljs-keyword">this</span>.id = params[<span class="hljs-string">'id'</span>];
+        <span class="hljs-keyword">this</span>.showDetails = params[<span class="hljs-string">'showDetails'</span>];
+      }
+    );
+  }
+
+  [...]
+}
+</div></code></pre>
+</p>
+</details>
+</li>
+<li>
+<p>Open <code>flight-edit.component.html</code> and display the url params.</p>
+<details>
+<summary>Show code</summary>
+<p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"card"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"header"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"title"</span>&gt;</span>Flight Edit<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"content"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Id: {{id}}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>ShowDetails: {{showDetails}}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+  [...]
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</div></code></pre>
+</p>
+</details>
+</li>
+<li>
+<p>Open the file <code>flight-booking.routes.ts</code> and add a new route for <code>FlightEditComponent</code>.</p>
+<details>
+<summary>Show code</summary>
+<p>
+<pre class="hljs"><code><div><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> FLIGHT_BOOKING_ROUTES: Routes = [
+  […],
+  {
+    path: <span class="hljs-string">'flight-edit/:id'</span>,
+    component: FlightEditComponent
+  }
+];
+</div></code></pre>
+<p>The segment <code>:id</code> is used as a placeholder for id.
+There is no placeholder for <code>showDetails</code> which means it is an optional url parameter (matrix parameter).</p>
+</p>
+</details>
+</li>
+<li>
+<p>Open the file <code>flight-search.component.html</code> and add a link that navigates to the <code>flight-edit</code> page.</p>
+<details>
+<summary>Show code</summary>
+<p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"btn btn-default"</span> 
+  [<span class="hljs-attr">routerLink</span>]=<span class="hljs-string">"['/flight-edit', f.id, { showDetails: true }]"</span>&gt;</span>   
+  Edit
+<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+</div></code></pre>
+</p>
+</details>
+</li>
+<li>
+<p>Test the solution:
+Search flights and click the edit link on one of the flights.</p>
+</li>
+</ol>
+<h2 id="bonus--flight-edit">Bonus: Flight Edit *</h2>
+<p>In this section we will enable editing of a flights in <code>FlightEditComponent</code>.</p>
+<ol>
+<li>
+<p>Open <code>flight.service.ts</code> and implement a method named <code>findById</code> which fetches a flight by its id.</p>
+<p>To fetch a flight use the <code>HttpClient</code> and its <code>get</code> method with the param <code>id</code>.</p>
+<p>If not already implemented use the <code>post</code> method of <code>HttpClients</code> to save a flight:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.http.post&lt;Flight&gt;(url, flight, { headers });
+</div></code></pre>
+<p>Notice that the flights with id's 1 to 5 are not editable.</p>
+<details>
+<summary>Show code</summary>
+<p>
+<pre class="hljs"><code><div>findById(id: <span class="hljs-built_in">string</span>): Observable&lt;Flight&gt; {
+    <span class="hljs-keyword">const</span> url = <span class="hljs-string">'http://www.angular.at/api/flight'</span>;
+    <span class="hljs-keyword">const</span> params = <span class="hljs-keyword">new</span> HttpParams()
+                      .set(<span class="hljs-string">'id'</span>, id);
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.http.get&lt;Flight&gt;(url, { params});
+}
+</div></code></pre>
+</li>
+</ol>
+  </p>
+  </details>
+<ol start="2">
+<li>
+<p>In <code>FlightEditComponent</code> load the flight with the <code>id</code> from the url. On every url parameter change, load the new flight.</p>
+ <details>
+ <summary>Show Code</summary>
+ <p>
+<pre class="hljs"><code><div>@Component({
+  selector: <span class="hljs-string">'app-flight-edit'</span>,
+  templateUrl: <span class="hljs-string">'./flight-edit.component.html'</span>
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> FlightEditComponent <span class="hljs-keyword">implements</span> OnInit {
+  
+  […]
+
+  ngOnInit() {
+    <span class="hljs-keyword">this</span>.route.params
+    .pipe(switchMap(params =&gt; <span class="hljs-keyword">this</span>.flightService.findById(params.id)))
+    .subscribe(
+      (flight: Flight) =&gt; { <span class="hljs-keyword">this</span>.selecteFlight = flight; <span class="hljs-keyword">this</span>.message = <span class="hljs-string">''</span>; },
+      err =&gt; { <span class="hljs-keyword">this</span>.message = <span class="hljs-string">'Error'</span>; }
+    );
+  }
+}
+</div></code></pre>
+ </p>
+ </details>
+</li>
+<li>
+<p>Open <code>flight-edit.component.html</code> and make sure that the flight with the id in the url is loaded.</p>
+</li>
+<li>
+<p>Test your solution.</p>
+</li>
+</ol>
+<h2 id="bonus--programmatic-routing">Bonus: Programmatic Routing *</h2>
+<ol>
+<li>
+<p>Inspect the documentation for the method <code>navigate</code> under <a href="https://angular.io/docs/ts/latest/api/router/index/Router-class.html#!#navigate-anchor">navigate-anchor</a></p>
+</li>
+<li>
+<p>Inject the <code>Router</code> into <code>FlightEditComponent</code> and use the <code>navigate</code> methode to redirect to the search page.</p>
+</li>
+<li>
+<p>Optional display a success message for saving the flight.</p>
+</li>
+</ol>
+
+    </body>
+    </html>

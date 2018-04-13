@@ -1,0 +1,56 @@
+<div class="card">
+
+    <div class="header">
+        <h2 class="title">Flight Search</h2>
+    </div>
+
+    <div class="content">
+
+        <form>
+            <div class="form-group">
+                <label>From:</label>
+                <input [(ngModel)]="from" name="from" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>To:</label>
+                <input [(ngModel)]="to" name="to" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <button (click)="search()" class="btn btn-default" [disabled]="!from || !to">Search</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+<div class="card">
+
+    <table *ngIf="flights.length > 0" class="table table-contensed">
+        <thead>
+            <tr>
+                <th>From</th>
+                <th>TO</th>
+                <th>Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let flight of flights" [class.active]="flight === selectedFlight">
+                <td>{{flight.from | city:'name'}} ({{flight.from | city:'short'}})</td>
+                <td>{{flight.to | city:'name'}} ({{flight.to | city:'short'}})</td>
+                <td>{{flight.date | date:'dd.MM.yyyy HH:mm'}}</td>
+                <td>
+                    <a class="btn btn-link" (click)="select(flight)">Select</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="card" *ngIf="selectedFlight">
+    <div class="content">
+        <pre>{{ selectedFlight | json }}</pre>
+        <!-- neue Zeile -->
+    </div>
+</div>
