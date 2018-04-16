@@ -2,8 +2,12 @@
     <div class="header">
         <h1 class="title">Flight Edit</h1>
     </div>
-    <div class="content">
-        <p>Id: {{id}}</p>
+    <div class="content" *ngIf="selectedFlight">
+        // TODO: form!
+        <p>Id: {{selectedFlight.id}}</p>
+        <p>from: {{selectedFlight.from}}</p>
+        <p>to: {{selectedFlight.to}}</p>
+        <p>date: {{selectedFlight.date | date:"yyyy-MM-dd HH:mm"}}</p>
         <p>ShowDetails: {{showDetails}}</p>
     </div>
 

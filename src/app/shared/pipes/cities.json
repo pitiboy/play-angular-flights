@@ -6,4 +6,12 @@
     "id": "HAM",
     "name": "Hamburg",
     "long": "Airport Hamburg Fulsbuettel Helmut Schmidt"
+}, {
+    "id": "LUT",
+    "name": "London",
+    "long": "London Luton"
+}, {
+    "id": "BUD",
+    "name": "Budapest",
+    "long": "Budapest Liszt Ferenc Airport"
 }]

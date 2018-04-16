@@ -8,6 +8,7 @@ import { PassengerSearchComponent } from './passenger-search/passenger-search.co
 import { FLIGHT_BOOKING_ROUTES } from './flight-booking.routes';
 import { RouterModule } from '@angular/router';
 import { FlightEditComponent } from './flight-edit/flight-edit.component';
+import { MockFlightService } from './__mock__/flight.service';
 
 @NgModule({
   imports: [
@@ -23,7 +24,7 @@ import { FlightEditComponent } from './flight-edit/flight-edit.component';
 ],
   providers: [
     FlightService
-    // { provide: FlightService, useClass: FlightService } // TODO: mock
+    // { provide: FlightService, useClass: MockFlightService } // TODO: mock
   ],
   exports: [
     FlightSearchComponent,
